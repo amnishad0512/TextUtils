@@ -37,6 +37,16 @@ export const TextForm = ({ heading }) => {
     let lowercaseText = text.toLowerCase();
     setText(lowercaseText);
   }
+  function copyText() {
+    let selectText = document.getElementById("myBox");
+    selectText.select();
+    navigator.clipboard.writeText(selectText.value);
+  }
+  function removeSpace() {
+    let newText = text.split(/[ ]+/)
+    console.log(newText)
+    setText(newText.join(" "));
+  }
 
   return (
     <div className="container my-3">
@@ -55,11 +65,17 @@ export const TextForm = ({ heading }) => {
       <button className="btn btn-primary" onClick={changeLowercase}>
         lowercase
       </button>
-      <button className="btn btn-primary mx-1" onClick={changeUppercase}>
+      <button className="btn btn-primary mx-2" onClick={changeUppercase}>
         UPPERCASE
       </button>
-      <button className="btn btn-primary mx-1" onClick={clear}>
-        Clear
+      <button className="btn btn-primary" onClick={removeSpace}>
+        Remove Extra Space
+      </button>
+      <button className="btn btn-primary mx-2" onClick={copyText}>
+        Copy Text{" "}
+      </button>
+      <button className="btn btn-primary" onClick={clear}>
+        Clear Text
       </button>
     </div>
   );
