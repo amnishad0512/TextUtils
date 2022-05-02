@@ -6,6 +6,9 @@ export const TextForm = ({ heading, theme }) => {
   const [word, setWord] = React.useState(0);
   const [time, setTime] = React.useState(0);
   const [line, setLine] = React.useState(0);
+
+  document.title = "TextUtils";
+
   function handleChange(e) {
     let text = e.target.value;
     setText(text);
@@ -13,8 +16,8 @@ export const TextForm = ({ heading, theme }) => {
     setWord(
       text
         .trim()
-        .split(" ")
-        .filter((element) => element != "" || element === "\n").length
+        .split(/\s+/)
+        .filter((element) => element !== "" || element === "\n").length
     );
     setTime(
       text.length === 0 ? 0 : (0.008 * text.trim().split(" ").length).toFixed(3)
@@ -40,7 +43,7 @@ export const TextForm = ({ heading, theme }) => {
   function copyText() {
     let selectText = document.getElementById("myBox");
     selectText.select();
-    navigator.clipboard.writeText(selectText.value);
+    navigator.clipboard.writeText(text);
   }
   function removeSpace() {
     let newText = text.split(/[ ]+/);
@@ -52,7 +55,9 @@ export const TextForm = ({ heading, theme }) => {
     <div className="container my-3">
       <h5>{heading}</h5>
       <textarea
-        className={`form-control my-3 ${theme==="light"?"bg-white text-dark":"bg-dark text-white"}`}
+        className={`form-control my-3 ${
+          theme === "light" ? "bg-white text-dark" : "bg-dark text-white"
+        }`}
         id="myBox"
         rows="8"
         value={text}
