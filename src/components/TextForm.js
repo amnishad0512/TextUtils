@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TextForm = ({ heading }) => {
+export const TextForm = ({ heading, theme }) => {
   const [text, setText] = React.useState("");
   const [char, setChar] = React.useState(0);
   const [word, setWord] = React.useState(0);
@@ -43,8 +43,8 @@ export const TextForm = ({ heading }) => {
     navigator.clipboard.writeText(selectText.value);
   }
   function removeSpace() {
-    let newText = text.split(/[ ]+/)
-    console.log(newText)
+    let newText = text.split(/[ ]+/);
+    console.log(newText);
     setText(newText.join(" "));
   }
 
@@ -52,7 +52,7 @@ export const TextForm = ({ heading }) => {
     <div className="container my-3">
       <h5>{heading}</h5>
       <textarea
-        className="form-control my-3"
+        className={`form-control my-3 ${theme==="light"?"bg-white text-dark":"bg-dark text-white"}`}
         id="myBox"
         rows="8"
         value={text}
@@ -62,19 +62,34 @@ export const TextForm = ({ heading }) => {
         Character Count: {char} | Word Count: {word} | Line Count: {line}
       </h6>
       <h6>Minutes to read: {time}</h6>
-      <button className="btn btn-primary" onClick={changeLowercase}>
+      <button
+        className={`btn btn-${theme === "light" ? "primary" : "dark"} `}
+        onClick={changeLowercase}
+      >
         lowercase
       </button>
-      <button className="btn btn-primary mx-2" onClick={changeUppercase}>
+      <button
+        className={`btn btn-${theme === "light" ? "primary" : "dark"} mx-2 `}
+        onClick={changeUppercase}
+      >
         UPPERCASE
       </button>
-      <button className="btn btn-primary" onClick={removeSpace}>
+      <button
+        className={`btn btn-${theme === "light" ? "primary" : "dark"} `}
+        onClick={removeSpace}
+      >
         Remove Extra Space
       </button>
-      <button className="btn btn-primary mx-2" onClick={copyText}>
+      <button
+        className={`btn btn-${theme === "light" ? "primary" : "dark"} mx-2 `}
+        onClick={copyText}
+      >
         Copy Text{" "}
       </button>
-      <button className="btn btn-primary" onClick={clear}>
+      <button
+        className={`btn btn-${theme === "light" ? "primary" : "dark"} `}
+        onClick={clear}
+      >
         Clear Text
       </button>
     </div>

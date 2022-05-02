@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 export const Navbar = ({ title, toggleTheme, theme }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav
+      className={`navbar navbar-expand-lg navbar-dark bg-${
+        theme === "light" ? "primary" : "dark"
+      }`}
+    >
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {title}
@@ -35,9 +39,20 @@ export const Navbar = ({ title, toggleTheme, theme }) => {
             </li>
           </ul>
         </div>
-        <button className="btn btn-dark" onClick={toggleTheme}>
-          {theme === "light" ? "Dark Mode" : "Light Mode"}
-        </button>
+        <div className="form-check form-switch">
+          <input
+            className={`form-check-input ${
+              theme === "light" ? "dark" : "light"
+            } ${theme === "light" ? "bg-white" : "bg-dark"}`}
+            type="checkbox"
+            role="switch"
+            id="theme"
+            onClick={toggleTheme}
+          />
+          <label className={`form-check-label text-white`} htmlFor="theme">
+            {theme === "light" ? "Enable Dark Mode" : "Disable Dark Mode"}
+          </label>
+        </div>
       </div>
     </nav>
   );

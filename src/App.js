@@ -21,7 +21,7 @@ function App() {
       }}
     >
       <Navbar title="TextUtils" toggleTheme={toggleTheme} theme={theme} />
-      <TextForm heading="Enter the text to analyze" />
+      <TextForm heading="Enter the text to analyze" theme={theme} />
     </div>
   );
 }
